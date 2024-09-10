@@ -7,11 +7,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Setter;
+import lombok.Getter;
 
 @Entity
 @Table(name="ranking")
-@Data public class Ranking {
+@Setter @Getter public class Ranking {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")

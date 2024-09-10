@@ -6,11 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Setter;
+import lombok.Getter;
 
 @Entity
 @Table(name="carta")
-@Data public class Carta {
+@Setter @Getter public class Carta {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")

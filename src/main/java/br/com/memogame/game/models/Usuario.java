@@ -9,12 +9,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Setter; 
+import lombok.Getter;
 
 
 @Entity
 @Table(name="usuario")
-@Data public class Usuario {
+@Setter @Getter public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
