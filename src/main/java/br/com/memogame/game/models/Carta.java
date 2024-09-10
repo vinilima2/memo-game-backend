@@ -6,20 +6,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Setter;
-import lombok.Getter;
+import lombok.Data;
 
 @Entity
 @Table(name="carta")
-public class Carta {
+@Data public class Carta {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
-    @Setter @Getter private Long id;
+    private Long id;
 
     @Column(name="cor", nullable = false)
-    @Setter @Getter private String cor;
+    private String cor;
 
     @Column(name="icone", nullable = false)
-    @Setter @Getter private String icone;
+    private String icone;
 }

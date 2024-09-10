@@ -9,31 +9,31 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Setter;
-import lombok.Getter;
+import lombok.Data;
 
 
 @Entity
 @Table(name="usuario")
-public class Usuario {
+@Data public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
-    @Setter @Getter private Long id;
+    private Long id;
 
     @Column(name="nome", nullable = false, unique = true)
-    @Setter @Getter private String nome;
+    private String nome;
 
     @Column(name="email", nullable = false)
-    @Setter @Getter private String email;
+    private String email;
 
     @Column(name="senha", nullable = false)
-    @Setter @Getter private String senha;
+    private String senha;
 
     @Column(name="recorde", nullable = false)
-    @Setter @Getter private Long recorde;
+    private Long recorde;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ranking_id", referencedColumnName = "id")
-    @Setter @Getter private Ranking ranking;
+    private Ranking ranking;
+
 }
