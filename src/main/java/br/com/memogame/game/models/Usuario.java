@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.Setter; 
 import lombok.Getter;
@@ -17,7 +19,7 @@ import lombok.Getter;
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
-    private Long id;
+    private int id;
 
     @Column(name="nome", nullable = false, unique = true)
     private String nome;
@@ -28,10 +30,8 @@ import lombok.Getter;
     @Column(name="senha", nullable = false)
     private String senha;
 
-    @Column(name="recorde", nullable = false)
-    private Long recorde;
-
-    @OneToOne(mappedBy = "usuario")
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Ranking ranking;
 
 }

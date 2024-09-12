@@ -15,7 +15,7 @@ import lombok.Getter;
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
-    private Long id;
+    private int id;
 
     @Column(name="cor", nullable = false)
     private String cor;
