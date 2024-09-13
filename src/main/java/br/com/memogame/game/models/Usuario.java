@@ -1,37 +1,40 @@
 package br.com.memogame.game.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
-import lombok.Setter; 
 import lombok.Getter;
-
+import lombok.Setter;
 
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 @Setter @Getter public class Usuario {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="id")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id=0;
 
-    @Column(name="nome", nullable = false, unique = true)
+    @Column(name = "nome", unique=true, nullable=false)
     private String nome;
 
-    @Column(name="email", nullable = false)
+    @Column(name="email", nullable=false)
     private String email;
 
-    @Column(name="senha", nullable = false)
+    @Column(name="senha", nullable=false)
     private String senha;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
     private Ranking ranking;
 
+    public Usuario() {  }
+    public Usuario(final String nome, final String email, final String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
 }

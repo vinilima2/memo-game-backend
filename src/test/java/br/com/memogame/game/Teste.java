@@ -1,0 +1,37 @@
+package br.com.memogame.game;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.Assert;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import br.com.memogame.game.repositories.*;
+import br.com.memogame.game.models.*;
+
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class Teste {
+    @Autowired
+    private UsuarioRepo ur;
+
+    @Autowired
+    private RankingRepo rr;
+
+    @Before
+    public void setUp() throws Exception {
+        //Usuario usuario = new Usuario("Mauricio", "email23@email.com", "234h234112asdfg");
+        //Ranking ranking = new Ranking(71231);
+        //usuario.setRanking(ranking);
+        //ranking.setUsuario(usuario);
+        //ur.save(usuario);
+        //rr.save(ranking);
+    }
+
+    @Test
+    public void testFetchData(){
+
+    }
+}
