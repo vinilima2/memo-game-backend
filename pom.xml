@@ -65,6 +65,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>provided</scope>
+    	</dependency>
+		<dependency>
+        	<groupId>org.mapstruct</groupId>
+        	<artifactId>mapstruct</artifactId>
+        	<version>1.4.2.Final</version>
     	</dependency> 	
 	</dependencies>
 	<build>
@@ -72,6 +77,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- plug-in mapstruct-processor -->
 				<configuration>
                 	<source>22</source> <!-- java jdk version -->
                 	<target>22</target> <!-- java jdk version -->
@@ -83,6 +89,7 @@
                     	</path>
                 	</annotationProcessorPaths>
             	</configuration>
+				<!-- ############################ -->
 			</plugin>
 		</plugins>
 	</build>
