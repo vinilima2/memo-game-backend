@@ -20,14 +20,12 @@ public class Teste {
     @Autowired
     private RankingRepo rr;
 
+    @Autowired
+    private CartaRepo cr;
+
     @Before
     public void setUp() throws Exception {
-        //Usuario usuario = new Usuario("Mauricio", "email23@email.com", "234h234112asdfg");
-        //Ranking ranking = new Ranking(71231);
-        //usuario.setRanking(ranking);
-        //ranking.setUsuario(usuario);
-        //ur.save(usuario);
-        //rr.save(ranking);
+
     }
 
     @Test
