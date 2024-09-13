@@ -72,6 +72,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                	<source>22</source> <!-- java jdk version -->
+                	<target>22</target> <!-- java jdk version -->
+                	<annotationProcessorPaths>
+                    	<path>
+                        	<groupId>org.mapstruct</groupId> 
+                        	<artifactId>mapstruct-processor</artifactId>
+                        	<version>1.3.1.Final</version>
+                    	</path>
+                	</annotationProcessorPaths>
+            	</configuration>
 			</plugin>
 		</plugins>
 	</build>
