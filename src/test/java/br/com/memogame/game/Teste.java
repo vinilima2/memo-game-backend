@@ -22,16 +22,21 @@ public class Teste {
 
     @Before
     public void setUp() throws Exception {
-        //Usuario usuario = new Usuario("Mauricio", "email23@email.com", "234h234112asdfg");
-        //Ranking ranking = new Ranking(71231);
-        //usuario.setRanking(ranking);
-        //ranking.setUsuario(usuario);
-        //ur.save(usuario);
-        //rr.save(ranking);
+        Usuario usuario = new Usuario("Thomas", "thomasbradesco55@gmail.com", "bhasd&&aasd9012ijnhu78");
+        Ranking ranking = new Ranking(1000);
+        usuario.setRanking(ranking);
+        ranking.setUsuario(usuario);
+        ur.save(usuario);
+        rr.save(ranking);
     }
 
     @Test
     public void testFetchData(){
-
+        Ranking ranking = rr.findById(1);
+        Assert.assertNotNull(ranking); 
+        Usuario usuario = ur.findByRanking(ranking);
+        Assert.assertNotNull(usuario);   
+        Assert.assertEquals(usuario.getId(), 1);
+        Assert.assertEquals(usuario.getNome(), "Thomas");
     }
 }
