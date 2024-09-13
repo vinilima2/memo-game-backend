@@ -10,9 +10,13 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "usuario")
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Setter @Getter public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,21 +24,17 @@ import lombok.Setter;
     private long id=0;
 
     @Column(name = "nome", unique=true, nullable=false)
+    @lombok.NonNull
     private String nome;
 
     @Column(name="email", nullable=false)
+    @lombok.NonNull
     private String email;
 
     @Column(name="senha", nullable=false)
+    @lombok.NonNull
     private String senha;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Ranking ranking;
-
-    public Usuario() {  }
-    public Usuario(final String nome, final String email, final String senha) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-    }
 }
