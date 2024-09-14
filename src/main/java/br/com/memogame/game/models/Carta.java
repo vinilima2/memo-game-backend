@@ -7,24 +7,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="carta")
+@NoArgsConstructor
+@RequiredArgsConstructor
 @Setter @Getter public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "icone", nullable=false)
+    @lombok.NonNull
     private String icone;
 
     @Column(name="cor", nullable = false)
+    @lombok.NonNull
     private String cor;
-
-    public Carta() {  }
-    public Carta(final String icone, final String cor) {
-        this.icone = icone;
-        this.cor = cor;
-    }
 }
