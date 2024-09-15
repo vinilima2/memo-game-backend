@@ -1,9 +1,8 @@
-package br.com.memogame.game.mappers;
+package br.com.memogame.game.dtos;
+
+import br.com.memogame.game.models.*;
 
 import org.mapstruct.Mapper;
-
-import br.com.memogame.game.dtos.*;
-import br.com.memogame.game.models.*;
 
 @Mapper(componentModel = "spring")
 public interface MapStructMapper {
