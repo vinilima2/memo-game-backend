@@ -25,7 +25,8 @@ public class Teste {
 
     @Before
     public void setUp() throws Exception {
-        
+        Carta carta = new Carta("bomba", "preto");
+        cr.save(carta);
     }
 
     @Test

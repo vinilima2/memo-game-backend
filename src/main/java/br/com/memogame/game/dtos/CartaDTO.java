@@ -1,16 +1,9 @@
 package br.com.memogame.game.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import br.com.memogame.game.models.Carta;
 
-@Setter @Getter public class CartaDTO {
-    @JsonProperty("id")
-    private long id;
-
-    @JsonProperty("icone")
-    private String icone;
-
-    @JsonProperty("cor")
-    private String cor;
+public record CartaDto(long id, String icone, String cor) {  
+    public CartaDto(Carta carta) {
+        this(carta.getId(), carta.getIcone(), carta.getCor());
+    }
 }

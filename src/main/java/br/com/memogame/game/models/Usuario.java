@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,8 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "usuario")
 @NoArgsConstructor
 @RequiredArgsConstructor
+@EqualsAndHashCode
+@AllArgsConstructor
 @Setter @Getter public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
