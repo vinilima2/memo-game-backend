@@ -9,6 +9,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 @Table(name="ranking")
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Setter @Getter public class Ranking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +30,9 @@ import lombok.RequiredArgsConstructor;
     @Column(name="pontuacao", nullable=false)
     @lombok.NonNull
     private Long pontuacao;
+
+    @Column(name="posicao")
+    private int posicao = 0;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")

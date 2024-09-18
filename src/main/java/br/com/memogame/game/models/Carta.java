@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,8 @@ import lombok.Setter;
 @Table(name="carta")
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 @Setter @Getter public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
