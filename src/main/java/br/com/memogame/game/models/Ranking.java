@@ -31,6 +31,9 @@ import lombok.RequiredArgsConstructor;
     @lombok.NonNull
     private Long pontuacao;
 
+    @Column(name="posicao")
+    private int posicao = 0;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
