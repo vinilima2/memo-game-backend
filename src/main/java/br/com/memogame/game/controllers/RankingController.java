@@ -26,7 +26,7 @@ public class RankingController {
         return RankingDto.sortRanking(repo.findAll());
     }
 
-    @GetMapping("/get/{nome}")   
+    @GetMapping("/get/{nome}") // --> localhost:8080/ranking/{nome}
     @ResponseBody
     public RankingDto getByNomeUsuario(@PathVariable String nome) {
         return getAll().stream().filter(r -> Objects.equals(r.nome_usuario(), nome)).collect(Collectors.toList()).get(0);
