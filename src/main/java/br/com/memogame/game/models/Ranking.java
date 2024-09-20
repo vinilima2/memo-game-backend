@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @EqualsAndHashCode
 @Setter @Getter public class Ranking {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name="pontuacao", nullable=false)

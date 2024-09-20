@@ -42,8 +42,9 @@ public class Teste {
         r2.setUsuario(u2);
         r1.setUsuario(u1);
         ur.save(u1); ur.save(u2); ur.save(u3); ur.save(u4); ur.save(u5);
-        rr.save(r1); rr.save(r2); rr.save(r3); rr.save(r4); rr.save(r5);
+        rr.save(r1); rr.save(r2); rr.save(r3); rr.save(r4); rr.save(r5); 
         */
+        
         /*List<Carta> cartas = new ArrayList<Carta>();
         cartas.add(new Carta("estrela", "amarelo"));
         cartas.add(new Carta("quadrado", "vermelho"));
