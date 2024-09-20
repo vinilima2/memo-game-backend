@@ -12,7 +12,7 @@
 	<groupId>br.com.memogame</groupId>
 	<artifactId>game</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>memog-game-backend</name>
+	<name>memo-game-backend</name>
 	<description>Backend da aplicação MemoGame</description>
 	<url/>
 	<licenses>
@@ -48,6 +48,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
 		</dependency>
 		<dependency> 
     		<groupId>org.springframework.boot</groupId> 
