@@ -1,5 +1,9 @@
 package br.com.memogame.game.controllers;
 
+import br.com.memogame.game.dtos.LoginResponseDto;
+import br.com.memogame.game.services.AuthService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,11 +28,23 @@ public class UsuarioController {
     @Autowired
     private RankingRepo rrepo;
 
+    @Autowired
+    private AuthService authService;
+
     @PostMapping("/login") // --> localhost:8080/usuarios/login # POST
     @ResponseBody
-    public UsuarioDto login(@RequestBody UsuarioLoginDto login) {
-        Usuario usuario = repo.findByNome(login.nome()); 
-        if (usuario == null || !usuario.getSenha().equals(login.senha())) return null; 
+    public UsuarioDto login(@RequestBody UsuarioLoginDto login, HttpServletResponse response) {
+        Usuario usuario = repo.findByNome(login.nome());
+
+        if (usuario == null || !usuario.getSenha().equals(login.senha())) throw new RuntimeException("Usuário ou senha inválidos");
+
+        String token = authService.generateToken(usuario.getNome());
+
+        Cookie cookie = new Cookie("token", token);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
         return new UsuarioDto(usuario);
     }
 
