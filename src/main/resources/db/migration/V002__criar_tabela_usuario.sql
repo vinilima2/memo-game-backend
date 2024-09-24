@@ -1,0 +1,7 @@
+CREATE TABLE usuario(
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(120) NOT NULL,
+    email VARCHAR(255),
+    senha VARCHAR(255),
+    primary key (id)
+) ENGINE=InnoDB DEFAULT CHARSET = UTF8;

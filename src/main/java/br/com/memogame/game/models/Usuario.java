@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @Setter @Getter public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     @Column(name = "id")
     private long id=0;
 

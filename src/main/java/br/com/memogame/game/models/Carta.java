@@ -21,7 +21,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 @Setter @Getter public class Carta {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "icone", nullable=false)
