@@ -13,6 +13,7 @@ import br.com.memogame.game.repositories.UsuarioRepo;
 import br.com.memogame.game.dtos.UsuarioDto;
 import br.com.memogame.game.dtos.UsuarioLoginDto;
 import br.com.memogame.game.dtos.UsuarioPontuacaoDto;
+import br.com.memogame.game.dtos.UsuarioCadastroDto; 
 import br.com.memogame.game.models.Usuario;
 import br.com.memogame.game.models.Ranking;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,18 @@ public class UsuarioController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
+        return new UsuarioDto(usuario);
+    }
+    @PostMapping("/cadastrar") // --> localhost:8080/usuarios/cadastrar # POST
+    @ResponseBody
+    public UsuarioDto cadastroUsuario(@RequestBody UsuarioCadastroDto novo) {
+        if (repo.findByNome(novo.email()) != null || repo.findByEmail(novo.email()) != null) return null;
+        Usuario usuario = new Usuario(novo.nome(), novo.email(), novo.senha());
+        Ranking ranking = new Ranking(0l);
+        usuario.setRanking(ranking);
+        ranking.setUsuario(usuario);
+        repo.save(usuario);
+        rrepo.save(ranking);
         return new UsuarioDto(usuario);
     }
 
