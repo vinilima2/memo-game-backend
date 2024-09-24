@@ -1,12 +1,15 @@
 package br.com.memogame.game.controllers;
 
+import br.com.memogame.game.services.AuthService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.memogame.game.repositories.RankingRepo;
 import br.com.memogame.game.repositories.UsuarioRepo;
-import br.com.memogame.game.dtos.UsuarioCadastroDto;
 import br.com.memogame.game.dtos.UsuarioDto;
 import br.com.memogame.game.dtos.UsuarioLoginDto;
 import br.com.memogame.game.dtos.UsuarioPontuacaoDto;
@@ -14,6 +17,8 @@ import br.com.memogame.game.models.Usuario;
 import br.com.memogame.game.models.Ranking;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 @RestController
 @RequestMapping("usuarios") // --> localhost:8080/usuarios
@@ -24,24 +29,23 @@ public class UsuarioController {
     @Autowired
     private RankingRepo rrepo;
 
+    @Autowired
+    private AuthService authService;
+
     @PostMapping("/login") // --> localhost:8080/usuarios/login # POST
     @ResponseBody
-    public UsuarioDto login(@RequestBody UsuarioLoginDto login) {
-        Usuario usuario = repo.findByNome(login.nome()); 
-        if (usuario == null || !usuario.getSenha().equals(login.senha())) return null; 
-        return new UsuarioDto(usuario);
-    }
+    public UsuarioDto login(@RequestBody UsuarioLoginDto login, HttpServletResponse response) {
+        Usuario usuario = repo.findByNome(login.nome());
 
-    @PostMapping("/cadastrar") // --> localhost:8080/usuarios/cadastrar # POST
-    @ResponseBody
-    public UsuarioDto cadastroUsuario(@RequestBody UsuarioCadastroDto novo) {
-        if (repo.findByNome(novo.email()) != null || repo.findByEmail(novo.email()) != null) return null;
-        Usuario usuario = new Usuario(novo.nome(), novo.email(), novo.senha());
-        Ranking ranking = new Ranking(0l);
-        usuario.setRanking(ranking);
-        ranking.setUsuario(usuario);
-        repo.save(usuario);
-        rrepo.save(ranking);
+        if (usuario == null || !usuario.getSenha().equals(login.senha())) throw new RuntimeException("Usuário ou senha inválidos");
+
+        String token = authService.generateToken(usuario.getNome());
+
+        Cookie cookie = new Cookie("token", token);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
         return new UsuarioDto(usuario);
     }
 
