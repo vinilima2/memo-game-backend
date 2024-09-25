@@ -2,19 +2,16 @@ package br.com.memogame.game.controllers;
 
 import br.com.memogame.game.dtos.*;
 import br.com.memogame.game.services.AuthService;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.memogame.game.repositories.RankingRepo;
 import br.com.memogame.game.repositories.UsuarioRepo;
 import br.com.memogame.game.models.Usuario;
 import br.com.memogame.game.models.Ranking;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("usuarios") // --> localhost:8080/usuarios
@@ -43,6 +40,13 @@ public class UsuarioController {
         response.addCookie(cookie);
 
         return new LoginResponseDto(token);
+    }
+
+    @GetMapping("/profile") // --> localhost:8080/usuarios/login # POST
+    @ResponseBody
+    public UsuarioDto login(@RequestAttribute Claims claims) {
+        Usuario usuario = repo.findByNome(claims.get("sub").toString());
+        return new UsuarioDto(usuario);
     }
     @PostMapping("/cadastrar") // --> localhost:8080/usuarios/cadastrar # POST
     @ResponseBody
