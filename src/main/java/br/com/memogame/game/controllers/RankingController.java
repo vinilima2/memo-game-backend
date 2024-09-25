@@ -23,7 +23,7 @@ public class RankingController {
     @GetMapping("/get") // --> localhost:8080/ranking/get
     @ResponseBody
     public List<RankingDto> getAll() {
-        return RankingDto.sortRanking(repo.findAll());
+        return RankingDto.sortRanking(repo.findTop10ByOrderByPontuacaoDesc());
     }
 
     @GetMapping("/get/{nome}") // --> localhost:8080/ranking/{nome}

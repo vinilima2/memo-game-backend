@@ -7,6 +7,7 @@ import br.com.memogame.game.models.Usuario;
 
 public interface RankingRepo extends CrudRepository<Ranking, Integer> {
     List<Ranking> findAll();
+    List<Ranking> findTop10ByOrderByPontuacaoDesc();
     Ranking findById(long id);
     Ranking findByUsuario(Usuario usuario);
 }
