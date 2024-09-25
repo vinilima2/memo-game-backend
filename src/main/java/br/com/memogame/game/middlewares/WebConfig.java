@@ -15,6 +15,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/usuarios/login"); // Ignora a rota de login
+                .excludePathPatterns("/usuarios/login", "/usuarios/cadastrar"); // Ignora a rota de login
     }
 }
