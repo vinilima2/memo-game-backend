@@ -19,7 +19,7 @@ public class AuthService {
             return Jwts.builder()
                     .setSubject(username)
                     .setIssuedAt(new Date())
-                    .setExpiration(new Date(System.currentTimeMillis() + 60000))
+                    .setExpiration(new Date(System.currentTimeMillis() + 60000 * 60))
                     .signWith(SignatureAlgorithm.HS512, SECRET)
                     .compact();
         } catch (Exception e) {
