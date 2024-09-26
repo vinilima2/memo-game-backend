@@ -42,7 +42,7 @@ public class UsuarioController {
         return new LoginResponseDto(token);
     }
 
-    @GetMapping("/profile") // --> localhost:8080/usuarios/login # POST
+    @GetMapping("/profile") // --> localhost:8080/usuarios/profile # GET
     @ResponseBody
     public UsuarioDto login(@RequestAttribute Claims claims) {
         Usuario usuario = repo.findByNome(claims.get("sub").toString());
