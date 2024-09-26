@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import br.com.memogame.game.models.Ranking;
+import br.com.memogame.game.models.Usuario;
+import br.com.memogame.game.repositories.UsuarioRepo;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import br.com.memogame.game.dtos.RankingDto;
 import br.com.memogame.game.repositories.RankingRepo;
 
@@ -20,15 +20,23 @@ public class RankingController {
     @Autowired
     private RankingRepo repo;
 
+    @Autowired
+    private UsuarioRepo usuarioRepo;
+
     @GetMapping("/get") // --> localhost:8080/ranking/get
     @ResponseBody
-    public List<RankingDto> getAll() {
-        return RankingDto.sortRanking(repo.findAll());
+    public List<RankingDto> getAll(@RequestAttribute Claims claims) {
+        String username = claims.get("sub").toString();
+        Usuario usuario = usuarioRepo.findByNome(username);
+        return repo.findTop10WithUsuarioLogado(usuario.getId());
     }
 
     @GetMapping("/get/{nome}") // --> localhost:8080/ranking/{nome}
     @ResponseBody
-    public RankingDto getByNomeUsuario(@PathVariable String nome) {
-        return getAll().stream().filter(r -> Objects.equals(r.nome_usuario(), nome)).collect(Collectors.toList()).get(0);
+    public RankingDto getByNomeUsuario(@RequestAttribute Claims claims) {
+        String username = claims.get("sub").toString();
+        Usuario usuario = usuarioRepo.findByNome(username);
+        Ranking rankingUsuario = repo.findByUsuario(usuario);
+        return new RankingDto(rankingUsuario);
     }
 }

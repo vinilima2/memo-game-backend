@@ -18,6 +18,10 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if(request.getMethod().equals("OPTIONS")) {
+            return true;
+        }
+            
        String token = Arrays.stream(request.getCookies())
                 .filter(cookie -> cookie.getName().equals("token"))
                 .map(cookie -> cookie.getValue())
